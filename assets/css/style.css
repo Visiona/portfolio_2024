@@ -794,6 +794,10 @@ a, a:hover {
   }
 }
 
+h1.heading.gsap-reveal-hero {
+  margin-bottom: -6px;
+}
+
 .cover-v1 .post-meta {
   font-size: 18px;
 }
