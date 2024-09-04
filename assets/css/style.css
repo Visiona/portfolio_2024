@@ -142,11 +142,11 @@ a, a:hover {
 }
 
 
-.footer-site-social .btn-contact:hover svg path {
+.btn-contact:hover svg path {
   fill: rgba(255, 255, 255, 0.7);
 }
 
-.footer-site-social .btn-contact svg path {
+.btn-contact svg path {
   transition: .5s;
 }
 
