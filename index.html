@@ -35,9 +35,20 @@ title: UX Designer
 
   <div class="unslate_co--section" id="portfolio-section">
     <div class="container">
+
+        <div class="section-heading-wrap text-center mb-5">
+          <h2 class="heading-h2 text-center divider"><span class="gsap-reveal">Portfolio</span></h2>
+          <span class="gsap-reveal">
+            <hr class="divider-line">
+          </span>
+        </div>
       
       
-      <div class="relative"><div class="loader-portfolio-wrap"><div class="loader-portfolio"></div></div> </div>
+        <div class="relative"><div class="loader-portfolio-wrap"><div class="loader-portfolio"></div></div> </div>
+        <div id="portfolio-single-holder"></div>
+        <div class="portfolio-wrapper">
+          
+      <!-- <div class="relative"><div class="loader-portfolio-wrap"><div class="loader-portfolio"></div></div> </div>
       <div id="portfolio-single-holder"></div>
 
       <div class="portfolio-wrapper">
@@ -45,7 +56,9 @@ title: UX Designer
         <div class="d-flex align-items-center mb-4 gsap-reveal gsap-reveal-filter">
           <h2 class="mr-auto heading-h2"><span class="gsap-reveal">Portfolio</span></h2>
 
-        </div>
+        </div> -->
+
+
 
 
         
@@ -220,7 +233,7 @@ title: UX Designer
                 
             </div>
             <h3>Front-end Development</h3>
-            <p>Advanced HTML and CSS, Javascript, jQuery, Github</p>
+            <p>Advanced HTML and CSS, Javascript, jQuery, Github, Wordpress, Webflow</p>
           </div> 
         </div>
 
@@ -236,8 +249,8 @@ title: UX Designer
                 </svg>
                 
             </div>
-            <h3>CMS Development</h3>
-            <p>Wordpress, Ms Power Apps (Power Automate & Power BI), Webflow</p>
+            <h3>Microsoft Tools</h3>
+            <p>Sharepoint admin, Sharepoint developer, Power Apps, Power BI, Power Automate, Power Pages, Copilot</p>
           </div> 
         </div>
         <div class="col-md-6 col-lg-4 mb-4">
@@ -395,10 +408,12 @@ title: UX Designer
                 </div>
               </div>
           </form>
-          <div id="form-message-warning" class="mt-4"></div> 
-          <div id="form-message-success">
-            Your message was sent, thank you!
-          </div>
+          <p id="form-message-warning" class="emailMsg">
+            Apologies, <br>your message was not sent, <br>please try again later.
+          </p> 
+          <p id="form-message-success" class="emailMsg">
+            Your message was successfully delivered, <br>thank you!
+          </p>
 
         </div>
 

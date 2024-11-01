@@ -154,11 +154,13 @@
           // Success callback, you can show alert messages
           // or redirect the user in this function
           onSuccess: function(response){
-            alert("Thank you for your messsage.  ");
+            document.getElementById("send-message-form").hide();
+            document.getElementById("form-message-success").show();
           },
           // Error callback, a good place to show errors 🗿
           onError: function(error){
-            alert(error, " error")
+            document.getElementById("form-message-warning").show();
+            console.log("error -> ", error);
           }
         });
       </script>

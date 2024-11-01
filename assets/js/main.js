@@ -221,35 +221,36 @@ var owlCarouselPlugin = function() {
 	});
 	owlSingleSlider();
 
-	if ( $('.logo-slider').length ) {
+	// if ( $('.logo-slider').length ) {
 
-		$('.logo-slider').owlCarousel({
-			center: false,
-	    loop: true,
-	    stagePadding: 0,
-	    margin: 0,
-	    smartSpeed: 1000,
-	    autoplay: true,
-	    autoplayHoverPause: true,
-	    dots: false,
-	    nav: false,
-	    responsive:{
-		    400:{
-		      items: 2
-		    },
-		    768:{
-		    	items: 3
-		    },
-		    1000:{
-		    	items: 5
-		    }
-	    }
-	   });
-	}
+	// 	$('.logo-slider').owlCarousel({
+	// 		center: false,
+	//     loop: true,
+	//     stagePadding: 0,
+	//     margin: 0,
+	//     smartSpeed: 1000,
+	//     autoplay: true,
+	//     autoplayHoverPause: true,
+	//     dots: false,
+	//     nav: false,
+	//     responsive:{
+	// 	    400:{
+	// 	      items: 2
+	// 	    },
+	// 	    768:{
+	// 	    	items: 3
+	// 	    },
+	// 	    1000:{
+	// 	    	items: 5
+	// 	    }
+	//     }
+	//    });
+	// }
 
 };
 
 var owlSingleSlider = function () {
+	// portfolio piece carousel
 	if ( $( '.single-slider' ).length ) {
 		$('.single-slider').owlCarousel({
 	    center: false,
@@ -263,7 +264,6 @@ var owlSingleSlider = function () {
 	    dots: true,
 	    nav: true,
 	    navText: ['<span class="icon-keyboard_arrow_left">', '<span class="icon-keyboard_arrow_right">'],
-
 	    responsive:{
 	      400:{
 	        stagePadding: 0,
@@ -619,6 +619,7 @@ var animateReveal = function() {
 
 			setTimeout(function() {
 				tl
+					// .fromTo(cover, 2, { skewX: 0 }, { xPercent: 101, transformOrigin: "0% 100%", ease:Expo.easeInOut })
 					.fromTo(cover, 2, { skewX: 0 }, { xPercent: 101, transformOrigin: "0% 100%", ease:Expo.easeInOut })
 			}, revealNum * 0);
 			
