@@ -1,0 +1,31 @@
+<header class="site-header" data-header>
+  <a class="brand" href="{{ '/' | relative_url }}" aria-label="Dariusz Biskupski, home">
+    <span class="brand-mark" aria-hidden="true">DB</span>
+    <span class="brand-name">Dariusz Biskupski</span>
+  </a>
+
+  <button
+    class="nav-toggle"
+    type="button"
+    aria-label="Open navigation"
+    aria-controls="primary-navigation"
+    aria-expanded="false"
+    data-nav-toggle
+  >
+    <span></span>
+    <span></span>
+  </button>
+
+  <nav
+    class="site-nav"
+    id="primary-navigation"
+    aria-label="Primary navigation"
+    data-nav
+  >
+    <a href="{{ '/#work' | relative_url }}">Work</a>
+    <a href="{{ '/#about' | relative_url }}">About</a>
+    <a href="{{ '/#skills' | relative_url }}">Skills</a>
+    <a href="{{ '/#testimonials' | relative_url }}">Testimonials</a>
+    <a href="{{ '/#contact' | relative_url }}">Contact</a>
+  </nav>
+</header>

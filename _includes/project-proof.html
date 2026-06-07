@@ -1,0 +1,26 @@
+{% assign project = site.data.projects[include.project] %}
+{% if project %}
+<section class="project-proof" aria-label="{{ project.title }} project summary">
+  <div class="container project-proof-grid">
+    <div class="project-proof-intro reveal-text">
+      <p class="eyebrow">Project at a glance</p>
+      <p>{{ project.summary }}</p>
+    </div>
+
+    <dl class="project-proof-facts reveal-card">
+      <div>
+        <dt>Role</dt>
+        <dd>{{ project.role }}</dd>
+      </div>
+      <div>
+        <dt>Client</dt>
+        <dd>{{ project.client }}</dd>
+      </div>
+      <div class="project-proof-outcome">
+        <dt>{{ project.proof_label }}</dt>
+        <dd>{{ project.proof_value }}</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+{% endif %}

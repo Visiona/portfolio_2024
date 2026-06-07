@@ -1,163 +1,131 @@
-/* =========================================================
-   Premium Portfolio V3 JavaScript
-   - GSAP hero reveal
-   - ScrollTrigger reveal animations
-   - magnetic buttons
-   - custom cursor
-   - reduced-motion protection
-   ========================================================= */
-
-const prefersReducedMotion = window.matchMedia(
-  '(prefers-reduced-motion: reduce)'
-).matches
-
-/* Mobile navigation */
-
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
 const navToggle = document.querySelector('[data-nav-toggle]')
 const nav = document.querySelector('[data-nav]')
 
-if (navToggle && nav) {
-  navToggle.addEventListener('click', () => {
-    const isOpen = nav.classList.toggle('is-open')
-    navToggle.setAttribute('aria-expanded', String(isOpen))
-  })
+function setNavigation(open) {
+  if (!navToggle || !nav) return
 
-  nav.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', () => {
-      nav.classList.remove('is-open')
-      navToggle.setAttribute('aria-expanded', 'false')
-    })
-  })
+  nav.classList.toggle('is-open', open)
+  navToggle.classList.toggle('is-open', open)
+  navToggle.setAttribute('aria-expanded', String(open))
+  navToggle.setAttribute(
+    'aria-label',
+    open ? 'Close navigation' : 'Open navigation'
+  )
 }
 
-/* Run advanced motion only when allowed */
-
-window.addEventListener('load', () => {
-  if (prefersReducedMotion) {
-    document
-      .querySelectorAll('.reveal-card, .reveal-text, .reveal-heading')
-      .forEach((el) => {
-        el.style.opacity = '1'
-        el.style.transform = 'none'
-      })
-
-    return
-  }
-
-  if (!window.gsap) return
-
-  gsap.registerPlugin(ScrollTrigger)
-
-  /* Initial hero reveal */
-
-  gsap.set('.reveal-heading', {
-    y: 48,
-    opacity: 0
+if (navToggle && nav) {
+  navToggle.addEventListener('click', () => {
+    setNavigation(navToggle.getAttribute('aria-expanded') !== 'true')
   })
 
-  gsap.set('.reveal-text', {
-    y: 24,
-    opacity: 0
+  nav.addEventListener('click', (event) => {
+    if (event.target.closest('a')) setNavigation(false)
   })
 
-  gsap.set('.reveal-card', {
-    y: 36,
-    opacity: 0
+  document.addEventListener('click', (event) => {
+    if (!event.target.closest('[data-header]')) setNavigation(false)
   })
 
-  const heroTimeline = gsap.timeline({
-    defaults: {
-      ease: 'power3.out',
-      duration: 1
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      setNavigation(false)
+      navToggle.focus()
     }
   })
 
-  heroTimeline
-    .to('.site-header', {
-      y: 0,
-      opacity: 1,
-      duration: 0.7
-    })
-    .to(
-      '.hero .reveal-heading',
-      {
-        y: 0,
-        opacity: 1
-      },
-      '-=0.35'
-    )
-    .to(
-      '.hero .reveal-text',
-      {
-        y: 0,
-        opacity: 1,
-        stagger: 0.12
-      },
-      '-=0.55'
-    )
-    .to(
-      '.hero .reveal-card',
-      {
-        y: 0,
-        opacity: 1
-      },
-      '-=0.55'
-    )
-
-  /* Scroll reveals */
-
-  gsap.utils.toArray('.page-section').forEach((section) => {
-    const items = section.querySelectorAll(
-      '.reveal-card, .section-intro, .content-block, .metric-card'
-    )
-
-    if (!items.length) return
-
-    gsap.to(items, {
-      y: 0,
-      opacity: 1,
-      duration: 0.9,
-      ease: 'power3.out',
-      stagger: 0.08,
-      scrollTrigger: {
-        trigger: section,
-        start: 'top 78%'
-      }
-    })
+  window.matchMedia('(min-width: 48rem)').addEventListener('change', (event) => {
+    if (event.matches) setNavigation(false)
   })
+}
 
-  /* Subtle parallax for large images */
+const revealItems = document.querySelectorAll(
+  '.reveal-card, .reveal-text, .reveal-heading, .reveal-pillar, .section-intro'
+)
 
-  gsap.utils
-    .toArray('.project-card img, .case-hero-media img')
-    .forEach((img) => {
-      gsap.to(img, {
-        yPercent: -6,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: img,
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: true
-        }
-      })
-    })
+document.querySelectorAll('.reveal-pillar').forEach((item, index) => {
+  item.style.setProperty('--reveal-delay', `${(index % 6) * 70}ms`)
 })
 
-/* Magnetic buttons */
+if (reducedMotion.matches || !('IntersectionObserver' in window)) {
+  revealItems.forEach((item) => item.classList.add('is-visible'))
+} else {
+  const revealObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return
 
-if (!prefersReducedMotion) {
-  document.querySelectorAll('.magnetic').forEach((el) => {
-    el.addEventListener('mousemove', (event) => {
-      const rect = el.getBoundingClientRect()
-      const x = event.clientX - rect.left - rect.width / 2
-      const y = event.clientY - rect.top - rect.height / 2
+        entry.target.classList.add('is-visible')
+        observer.unobserve(entry.target)
+      })
+    },
+    { rootMargin: '0px 0px -8% 0px', threshold: 0.12 }
+  )
 
-      el.style.transform = `translate(${x * 0.12}px, ${y * 0.12}px)`
+  revealItems.forEach((item) => revealObserver.observe(item))
+}
+
+document.querySelectorAll('img:not([loading])').forEach((image) => {
+  if (!image.closest('.cover-v1')) image.loading = 'lazy'
+  image.decoding = 'async'
+})
+
+const recaptcha = document.querySelector('.g-recaptcha')
+
+if (recaptcha) {
+  let recaptchaRequested = false
+
+  const loadRecaptcha = () => {
+    if (recaptchaRequested) return
+
+    recaptchaRequested = true
+    const script = document.createElement('script')
+    script.src = 'https://www.google.com/recaptcha/api.js'
+    script.async = true
+    script.defer = true
+    document.head.append(script)
+  }
+
+  const contactForm = recaptcha.closest('form')
+
+  if ('IntersectionObserver' in window) {
+    const recaptchaObserver = new IntersectionObserver(
+      (entries, observer) => {
+        if (!entries.some((entry) => entry.isIntersecting)) return
+
+        loadRecaptcha()
+        observer.disconnect()
+      },
+      { rootMargin: '500px 0px' }
+    )
+
+    recaptchaObserver.observe(recaptcha)
+  }
+
+  contactForm?.addEventListener('focusin', loadRecaptcha, { once: true })
+  contactForm?.addEventListener('pointerenter', loadRecaptcha, { once: true })
+}
+
+const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)')
+
+if (!reducedMotion.matches && finePointer.matches) {
+  document.querySelectorAll('.magnetic').forEach((element) => {
+    let frame
+
+    element.addEventListener('pointermove', (event) => {
+      cancelAnimationFrame(frame)
+      frame = requestAnimationFrame(() => {
+        const rect = element.getBoundingClientRect()
+        const x = (event.clientX - rect.left - rect.width / 2) * 0.08
+        const y = (event.clientY - rect.top - rect.height / 2) * 0.08
+
+        element.style.transform = `translate3d(${x}px, ${y}px, 0)`
+      })
     })
 
-    el.addEventListener('mouseleave', () => {
-      el.style.transform = 'translate(0, 0)'
+    element.addEventListener('pointerleave', () => {
+      cancelAnimationFrame(frame)
+      element.style.removeProperty('transform')
     })
   })
 }

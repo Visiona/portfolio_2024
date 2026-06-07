@@ -4,85 +4,49 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>{{ page.title }} | Dariusz Biskupski</title>
+    <title>
+      {%- if page.title -%}{{ page.title }} | {% endif -%}{{ site.title }}
+    </title>
 
     <meta
       name="description"
-      content="UX Designer and frontend developer based in Dublin, designing useful digital experiences through research, clarity and clean implementation."
+      content="{{ page.description | default: site.description | strip_newlines | escape }}"
     />
+    <meta name="theme-color" content="#f5f7f3" />
+    <link rel="canonical" href="{{ page.url | absolute_url }}" />
 
-    <link rel="stylesheet" href="/assets/css/style.css" />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-    <!-- Display + body font -->
+    <script>
+      document.documentElement.classList.add('js')
+    </script>
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Newsreader:opsz,wght@6..72,500;6..72,600;6..72,700&display=swap"
       rel="stylesheet"
+      href="{{ '/assets/css/style.css' | relative_url }}"
     />
 
-    {% if page.has_contact_form %}
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    {% if page.preload_hero %}
+    <link
+      rel="preload"
+      as="image"
+      href="{{ '/assets/images/hero-workspace-640.webp' | relative_url }}"
+      imagesrcset="
+        {{ '/assets/images/hero-workspace-640.webp' | relative_url }} 640w,
+        {{ '/assets/images/hero-workspace-960.webp' | relative_url }} 960w
+      "
+      imagesizes="(min-width: 48rem) 38vw, calc(100vw - 2rem)"
+      fetchpriority="high"
+    />
     {% endif %}
 
-    <!-- GSAP via CDN -->
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
-      defer
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"
-      defer
-    ></script>
-
-    <script src="/assets/js/script.js" defer></script>
+    <script src="{{ '/assets/js/script.js' | relative_url }}" defer></script>
   </head>
 
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
 
-    <header class="site-header" data-header>
-      <a class="brand" href="/">
-        <span class="brand-mark">DB</span>
-        <span class="brand-name">Dariusz Biskupski</span>
-      </a>
+    {% include navigation.html %}
 
-      <button
-        class="nav-toggle"
-        type="button"
-        aria-label="Toggle navigation"
-        aria-expanded="false"
-        data-nav-toggle
-      >
-        <span></span>
-        <span></span>
-      </button>
+    <main id="main" tabindex="-1">{{ content }}</main>
 
-      <nav class="site-nav" aria-label="Primary navigation" data-nav>
-        <a href="/#work">Work</a>
-        <a href="/#about">About</a>
-        <a href="/#skills">Skills</a>
-        <a href="/#testimonials">Testimonials</a>
-        <a href="/#contact">Contact</a>
-      </nav>
-    </header>
-
-    <main id="main">{{ content }}</main>
-
-    <footer class="site-footer">
-      <p>© {{ "now" | date: "%Y" }} Dariusz Biskupski</p>
-
-      <div class="footer-links">
-        <a
-          href="https://www.linkedin.com/in/darekbiskupski/"
-          target="_blank"
-          rel="noopener"
-        >
-          LinkedIn
-        </a>
-        <a href="#main">Back to top</a>
-      </div>
-    </footer>
+    {% include footer.html %}
   </body>
 </html>

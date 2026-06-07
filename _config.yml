@@ -54,3 +54,4 @@ exclude:
   - vendor/
   - __MACOSX/
   - .DS_Store
+  - portfolio-snippets/

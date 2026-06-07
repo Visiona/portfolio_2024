@@ -1,0 +1,64 @@
+promotions:
+  title: Accenture Promotions
+  url: /accenture-promotions.html
+  image: /assets/images/work_1_md_promo.webp
+  image_alt: Accenture Promotions search and filtering interface
+  type: UX Research · UI Design · Frontend
+  role: UX researcher, UI designer and frontend developer
+  client: Accenture
+  summary: A global promotions search experience designed to keep a dataset of up to 100,000 employees fast, secure and easy to navigate.
+  proof_value: 160k
+  proof_label: views in the first launch week
+  outcome: Ten familiar multi-select filters and a maintainable seven-step publishing workflow helped set a new internal benchmark.
+
+onboarding:
+  title: Accenture Onboarding Hub
+  url: /case-study-2.html
+  image: /assets/images/work_2_md_newjoin.webp
+  image_alt: Accenture Onboarding Hub interface
+  type: UX Research · Information Architecture · UI Design
+  role: UX researcher and UI designer
+  client: Accenture
+  summary: A centralised onboarding hub that replaced scattered links with a clearer, self-service journey for new joiners.
+  proof_value: 2h
+  proof_label: saved per new joiner
+  outcome: Research-led information architecture improved satisfaction and gave other regional teams a reusable model.
+
+candidate_form:
+  title: Senior MDs Candidate Form
+  url: /case-study-3.html
+  image: /assets/images/work_3_md_smd.webp
+  image_alt: Senior MDs Candidate Form interface
+  type: UX Design · Interaction Design · Power Apps
+  role: UX designer, interaction designer and Power Apps developer
+  client: Accenture
+  summary: A guided submission flow that replaced a manual PowerPoint process for senior leadership candidates and support teams.
+  proof_value: 75%
+  proof_label: reduction in support workload
+  outcome: The form reduced instructions and rework while preserving candidate input during unreliable connections.
+
+community:
+  title: Community Website Redesign
+  url: /aa-fellowship-redesign.html
+  image: /assets/images/work_4_md_aa-website.webp
+  image_alt: Community support website redesign
+  type: UX Research · UI Design · CMS
+  role: UX researcher, UI designer and CMS developer
+  client: AA Fellowship
+  summary: A research-led redesign that made meeting information easier to find for people with varied digital confidence.
+  proof_value: 200%
+  proof_label: increase in visitors
+  outcome: The site strengthened community participation and became a reference for other Polish-speaking groups in Europe.
+
+magazine:
+  title: Magazine Portal Redesign
+  url: /magazine-portal-redesign.html
+  image: /assets/images/work_5_md_zdroj.webp
+  image_alt: Magazine portal redesign preview
+  type: UX Research · Information Architecture · UI Design
+  role: UX researcher and UI designer
+  client: AA Fellowship
+  summary: A clearer digital publication structure for readers seeking practical support and long-form magazine content.
+  proof_value: New IA
+  proof_label: reorganised the content model
+  outcome: Surveys, interviews and analytics informed a new architecture, wireframes and prototype that received positive stakeholder feedback.

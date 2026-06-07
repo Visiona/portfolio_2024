@@ -1,31 +1,26 @@
 ---
 layout: default
 title: UX Designer
+description: UX designer and frontend developer in Dublin creating clear, accessible digital products through research, interface design and implementation.
 has_contact_form: true
+preload_hero: true
 ---
 
 <section class="hero page-section">
   <div class="container hero-grid">
     <div class="hero-copy">
-      <p class="eyebrow reveal-text">UX Designer · Frontend-minded · Dublin</p>
+      <p class="eyebrow reveal-text">UX Designer · Dublin</p>
 
-      <h1 class="hero-title reveal-heading">
-        Designing useful digital experiences through research, clarity and care.
-      </h1>
+      <h1 class="hero-title reveal-heading">Dariusz Biskupski</h1>
 
-      <img
-        src="assets/images/hero-workspace.webp"
-        alt="Warm minimal workspace with wooden desk, computer, plants and natural light"
-        loading="eager"
-        width="800"
-        fetchpriority="high"
-        class="hero-media reveal-card"
-      />
+      <p class="hero-statement reveal-text">
+        I find the friction beneath the interface, then design the clearer way
+        through.
+      </p>
 
       <p class="hero-lead reveal-text">
-        I combine UX research, UI design and frontend experience to uncover user
-        problems, simplify complexity and build interfaces that feel calm, clear
-        and usable.
+        Research-led UX, precise interface design and frontend awareness for
+        complex products that need to feel instinctive.
       </p>
 
       <div class="hero-actions reveal-text">
@@ -36,16 +31,60 @@ has_contact_form: true
       </div>
     </div>
 
-    <aside class="hero-card reveal-card" aria-label="Focus areas">
-      <p class="card-kicker">Focus areas</p>
-      <ul class="line-list">
-        <li>UX research</li>
-        <li>Usability testing</li>
-        <li>Information architecture</li>
-        <li>Interface design</li>
-        <li>Frontend implementation</li>
-      </ul>
-    </aside>
+    <figure class="hero-visual reveal-card">
+      <img
+        src="{{ '/assets/images/hero-workspace-640.webp' | relative_url }}"
+        srcset="
+          {{ '/assets/images/hero-workspace-640.webp' | relative_url }} 640w,
+          {{ '/assets/images/hero-workspace-960.webp' | relative_url }} 960w
+        "
+        sizes="(min-width: 48rem) 38vw, calc(100vw - 2rem)"
+        alt="Warm minimal workspace with wooden desk, computer, plants and natural light"
+        loading="eager"
+        width="960"
+        height="576"
+        fetchpriority="high"
+        decoding="sync"
+        class="hero-media"
+      />
+      <figcaption>Research, systems thinking and careful execution.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="principles-section" aria-labelledby="principles-title">
+  <div class="container principles-layout">
+    <div class="principles-intro">
+      <p class="eyebrow">How I work</p>
+      <h2 id="principles-title">Curious at the root. Precise at the finish.</h2>
+    </div>
+
+    <ol class="principles-list">
+      <li class="principle reveal-pillar">
+        <span>01</span>
+        <p>Driven by spontaneous, data-backed UX research.</p>
+      </li>
+      <li class="principle reveal-pillar">
+        <span>02</span>
+        <p>Unraveling complex product friction at its root cause.</p>
+      </li>
+      <li class="principle reveal-pillar">
+        <span>03</span>
+        <p>Never settling for UX half-measures; focused on pixel-perfect execution.</p>
+      </li>
+      <li class="principle reveal-pillar">
+        <span>04</span>
+        <p>Facilitating collaborative, cross-functional solution brainstorming.</p>
+      </li>
+      <li class="principle reveal-pillar">
+        <span>05</span>
+        <p>Designing with usability heuristics and human-centered principles.</p>
+      </li>
+      <li class="principle reveal-pillar">
+        <span>06</span>
+        <p>Bridging design systems and the frontend engineering details.</p>
+      </li>
+    </ol>
   </div>
 </section>
 
@@ -57,98 +96,29 @@ has_contact_form: true
     </div>
 
     <div class="project-grid">
-      <a
-        class="project-card project-card-large reveal-card"
-        href="/accenture-promotions.html"
-      >
+      {% for project_entry in site.data.projects %}
+      {% assign project = project_entry[1] %}
+      <a class="project-card reveal-card" href="{{ project.url | relative_url }}">
         <img
-          src="/assets/images/work_1_md_promo.png"
-          alt="Accenture Promotions project interface"
-          loading="eager"
-          width="1200"
-          height="760"
-        />
-        <div class="project-body">
-          <p class="project-type">UX Design · Frontend</p>
-          <h3>Accenture Promotions</h3>
-          <p>
-            Search and management tool for highly visible internal promotion
-            workflows.
-          </p>
-        </div>
-      </a>
-
-      <a class="project-card reveal-card" href="/case-study-1.html">
-        <img
-          src="/assets/images/work_2_md_newjoin.png"
-          alt="Onboarding Hub project interface"
-          loading="lazy"
+          src="{{ project.image | relative_url }}"
+          alt="{{ project.image_alt }}"
+          loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
           width="900"
           height="620"
+          decoding="async"
         />
         <div class="project-body">
-          <p class="project-type">UX / UI Design</p>
-          <h3>Onboarding Hub</h3>
-          <p>
-            Streamlined onboarding experience for new joiners and internal
-            teams.
-          </p>
+          <p class="project-type">{{ project.type }}</p>
+          <h3>{{ project.title }}</h3>
+          <p class="project-summary">{{ project.summary }}</p>
+          <div class="project-proof-point">
+            <strong>{{ project.proof_value }}</strong>
+            <span>{{ project.proof_label }}</span>
+          </div>
+          <span class="project-link">View case study <span aria-hidden="true">→</span></span>
         </div>
       </a>
-
-      <a
-        class="project-card reveal-card"
-        href="/accenture-md-candidate-form.html"
-      >
-        <img
-          src="/assets/images/work_3_md_smd.png"
-          alt="Senior MDs Form project interface"
-          loading="lazy"
-          width="900"
-          height="620"
-        />
-        <div class="project-body">
-          <p class="project-type">UX Design · Frontend</p>
-          <h3>Senior MDs Form</h3>
-          <p>Digital form for collecting and managing candidate information.</p>
-        </div>
-      </a>
-
-      <a class="project-card reveal-card" href="/aa-fellowship-redesign.html">
-        <img
-          src="/assets/images/work_4_md_aa-website.png"
-          alt="Community website redesign preview"
-          loading="lazy"
-          width="900"
-          height="620"
-        />
-        <div class="project-body">
-          <p class="project-type">UX Design · CMS</p>
-          <h3>Community Website Redesign</h3>
-          <p>
-            Redesign of a community website to improve clarity, trust and
-            navigation.
-          </p>
-        </div>
-      </a>
-
-      <a class="project-card reveal-card" href="/case-study-3.html">
-        <img
-          src="/assets/images/work_5_md_zdroj.png"
-          alt="Zdroj Magazine digital publication"
-          loading="lazy"
-          width="900"
-          height="620"
-        />
-        <div class="project-body">
-          <p class="project-type">UX Design</p>
-          <h3>Zdroj Magazine</h3>
-          <p>
-            Digital publication experience focused on readability and content
-            structure.
-          </p>
-        </div>
-      </a>
+      {% endfor %}
     </div>
   </div>
 </section>
@@ -157,11 +127,12 @@ has_contact_form: true
   <div class="container about-grid">
     <div class="portrait-card reveal-card">
       <img
-        src="assets/images/self-image.png"
+        src="{{ '/assets/images/self-image.webp' | relative_url }}"
         alt="Portrait of Dariusz Biskupski"
         loading="lazy"
         width="760"
         height="900"
+        decoding="async"
       />
     </div>
 
@@ -192,9 +163,9 @@ has_contact_form: true
         class="text-link magnetic"
         href="https://www.linkedin.com/in/darekbiskupski/"
         target="_blank"
-        rel="noopener"
+        rel="noopener noreferrer"
       >
-        View LinkedIn profile
+        View LinkedIn profile<span class="sr-only"> (opens in a new tab)</span>
       </a>
     </div>
   </div>
@@ -313,10 +284,9 @@ has_contact_form: true
       <form
         action="https://formcarry.com/s/sswgGbSXl6h"
         method="POST"
-        enctype="multipart/form-data"
       >
         <div class="formcarry-block">
-          <label for="fc-generated-1-name">Full Name</label>
+          <label for="fc-generated-1-name">Full name</label>
           <input
             type="text"
             name="name"
@@ -328,7 +298,7 @@ has_contact_form: true
         </div>
 
         <div class="formcarry-block">
-          <label for="fc-generated-1-email">Your Email Address</label>
+          <label for="fc-generated-1-email">Email address</label>
           <input
             type="email"
             name="email"
@@ -343,9 +313,10 @@ has_contact_form: true
           <label for="fc-generated-1-message">Your message</label>
           <textarea
             name="message"
-            name="message"
             id="fc-generated-1-message"
-            placeholder="Enter your message..."
+            placeholder="Tell me a little about your project"
+            rows="7"
+            required
           ></textarea>
         </div>
 
@@ -357,7 +328,7 @@ has_contact_form: true
         ></div>
 
         <div class="formcarry-block">
-          <button type="submit" class="button button-primary">Send</button>
+          <button type="submit" class="button button-primary">Send message</button>
         </div>
       </form>
     </div>
